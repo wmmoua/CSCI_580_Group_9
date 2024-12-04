@@ -13,6 +13,8 @@ def ProjectDataLoader():
     for filename in os.listdir("digits/"):
         image_path = os.path.join("digits/", filename)
         image = Image.open(image_path).convert("L")
+        image = image.resize((28, 28))
+
         image_array = np.array(image)
         tensor = torch.tensor(image_array, dtype=torch.float32)
         normalized_tensor = (tensor - 127.5) / 127.5
